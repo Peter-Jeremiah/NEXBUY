@@ -46,6 +46,25 @@ function updateNotificationUI() {
     }
 }
 
+function updateProfileUI() {
+    // Note: Change 'profileImage' if your profile.js uses a different key!
+    const savedImage = localStorage.getItem('profileImage'); 
+    
+    const initialDiv = document.getElementById('home-profile-initial');
+    const imgElement = document.getElementById('home-profile-img');
+
+    if (savedImage) {
+        // If an image exists in memory, hide the "P" and show the image
+        initialDiv.style.display = 'none';
+        imgElement.src = savedImage;
+        imgElement.style.display = 'block';
+    } else {
+        // If no image, show the "P" and hide the image tag
+        initialDiv.style.display = 'flex'; 
+        imgElement.style.display = 'none';
+    }
+}
+
 function addToCart(id) {
     cart[id] = 1; 
     document.getElementById(`add-btn-${id}`).style.display = 'none';
@@ -276,5 +295,6 @@ function renderProducts(filterCategory) {
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts('all');
     updateCartUI(); 
-    updateNotificationUI(); // <-- ADD THIS LINE
+    updateNotificationUI(); 
+    updateProfileUI(); // <-- ADD THIS LINE
 });

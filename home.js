@@ -47,14 +47,15 @@ function updateNotificationUI() {
 }
 
 function updateProfileUI() {
-    // Note: Change 'profileImage' if your profile.js uses a different key!
-    const savedImage = localStorage.getItem('profileImage'); 
+    // 1. THIS IS THE FIX: Looking for 'userAvatar' to match your profile.js exactly
+    const savedImage = localStorage.getItem('userAvatar'); 
     
+    // 2. Grabbing the UI elements from your index.html header
     const initialDiv = document.getElementById('home-profile-initial');
     const imgElement = document.getElementById('home-profile-img');
 
     if (savedImage) {
-        // If an image exists in memory, hide the "P" and show the image
+        // If an image exists, hide the "P" and show the profile picture
         initialDiv.style.display = 'none';
         imgElement.src = savedImage;
         imgElement.style.display = 'block';

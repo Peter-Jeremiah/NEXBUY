@@ -1,0 +1,458 @@
+/* ============================================================
+   NOTIFICATION PAGE — Matches Shopping Page Light/Dark Theme
+   ============================================================ */
+
+/* ---- CSS Variables ---- */
+:root {
+    --transition: 0.28s cubic-bezier(.4,0,.2,1);
+}
+
+/* LIGHT MODE — white cards, yellow accents, blue buttons (matches shopping light) */
+[data-theme="light"] {
+    --bg-page:        #f0f2f5;
+    --bg-header:      #ffffff;
+    --bg-card:        #ffffff;
+    --bg-card-hover:  #f7f9fc;
+    --border-color:   #e2e5ec;
+    --text-main:      #1a1a2a;
+    --text-sub:       #6b7280;
+    --icon-bg:        #e8edf8;
+    --tab-inactive:   #e8edf8;
+    --tab-text:       #4a5568;
+    --tab-active-bg:  #1d4ed8;
+    --tab-active-txt: #ffffff;
+    --accent:         #e8a020;    /* yellow — same as shopping price colour */
+    --accent-link:    #1d4ed8;   /* blue  — same as shopping button */
+    --header-border:  #e8a020;   /* yellow bottom border on header */
+    --shadow:         0 2px 12px rgba(0,0,0,0.07);
+    --badge-tx:       #dbeafe; --badge-tx-txt: #1d4ed8;
+    --badge-sv:       #fef9c3; --badge-sv-txt: #854d0e;
+    --badge-ac:       #fce7f3; --badge-ac-txt: #9d174d;
+}
+
+/* DARK MODE — near-black bg, purple-blue header accent, yellow prices (matches shopping dark) */
+[data-theme="dark"] {
+    --bg-page:        #080810;
+    --bg-header:      #0f0f1e;
+    --bg-card:        #141428;
+    --bg-card-hover:  #1a1a34;
+    --border-color:   rgba(255,255,255,0.08);
+    --text-main:      #f0f0fa;
+    --text-sub:       #8888aa;
+    --icon-bg:        #1e1e38;
+    --tab-inactive:   #1a1a30;
+    --tab-text:       #9090b0;
+    --tab-active-bg:  #4f46e5;   /* purple-blue — same as shopping dark button */
+    --tab-active-txt: #ffffff;
+    --accent:         #e8a020;   /* yellow — same as shopping price colour */
+    --accent-link:    #818cf8;   /* lighter purple for links */
+    --header-border:  #4f46e5;   /* purple bottom border — matches dark shopping */
+    --shadow:         0 4px 24px rgba(0,0,0,0.5);
+    --badge-tx:       rgba(79,70,229,0.2);  --badge-tx-txt: #818cf8;
+    --badge-sv:       rgba(232,160,32,0.15);--badge-sv-txt: #e8a020;
+    --badge-ac:       rgba(236,72,153,0.15);--badge-ac-txt: #f472b6;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    min-height: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+/* ---- Header ---- */
+.notif-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    background: var(--bg-header);
+    /* Yellow line in light / purple line in dark — matches shopping page header border */
+    border-bottom: 3px solid var(--header-border);
+    box-shadow: var(--shadow);
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--icon-bg);
+    color: var(--text-main);
+    text-decoration: none;
+    transition: background var(--transition), transform 0.15s;
+}
+.back-btn:hover { transform: scale(1.08); }
+.back-btn svg { width: 18px; height: 18px; }
+
+.header-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---- Light/Dark Toggle — pill switch with sun & moon ---- */
+.theme-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.toggle-icon { width: 15px; height: 15px; flex-shrink: 0; transition: color var(--transition); }
+.toggle-icon.sun  { color: #e8a020; }
+.toggle-icon.moon { color: #818cf8; }
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 25px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 34px;
+    background: #d1d5db;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+.slider::before {
+    content: '';
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+    transition: left var(--transition);
+}
+/* Dark = purple-blue toggle (matches shopping dark button colour) */
+.switch input:checked + .slider { background: #4f46e5; }
+.switch input:checked + .slider::before { left: 27px; }
+
+/* More ··· dots */
+.more-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+.more-btn span {
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-sub);
+}
+
+/* ---- Tab Bar ---- */
+.tab-bar {
+    display: flex;
+    gap: 9px;
+    padding: 14px 18px 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--bg-page);
+    transition: background var(--transition);
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+    flex-shrink: 0;
+    padding: 7px 18px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border-color);
+    background: var(--tab-inactive);
+    color: var(--tab-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+.tab-btn:hover {
+    border-color: var(--tab-active-bg);
+    color: var(--tab-active-bg);
+}
+/* Active tab = blue (light) / purple (dark) filled pill — same as shopping buttons */
+.tab-btn.active {
+    background: var(--tab-active-bg);
+    border-color: var(--tab-active-bg);
+    color: var(--tab-active-txt);
+    font-weight: 600;
+}
+
+/* ---- Notification Cards ---- */
+.notifications-main {
+    padding: 10px 18px 30px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.notify-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 16px 16px 0;
+    margin-bottom: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--shadow);
+    transition: background var(--transition), transform 0.15s, box-shadow 0.15s;
+    animation: fadeUp 0.3s ease both;
+}
+.notify-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.notify-card-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.notify-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    background: var(--icon-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+/* Icon fill: yellow in both modes (matches shopping price/accent) */
+.notify-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--accent);
+}
+/* Red notification dot */
+.notify-icon::after {
+    content: '';
+    position: absolute;
+    top: 2px; right: 2px;
+    width: 9px; height: 9px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 2px solid var(--bg-card);
+}
+
+.notify-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.notify-body {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    line-height: 1.55;
+    padding: 0 2px;
+}
+
+.notify-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding: 11px 2px 13px;
+}
+
+.notify-date {
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+/* "View" link — blue (light) / purple (dark), matches shopping button colour */
+.notify-view {
+    color: var(--accent-link);
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    transition: gap 0.2s;
+}
+.notify-view:hover { gap: 7px; }
+.notify-view::after { content: '›'; font-size: 17px; line-height: 1; }
+
+/* Category badges */
+.notify-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 50px;
+    margin-left: auto;
+}
+.badge-transactions { background: var(--badge-tx);  color: var(--badge-tx-txt); }
+.badge-services     { background: var(--badge-sv);  color: var(--badge-sv-txt); }
+.badge-activities   { background: var(--badge-ac);  color: var(--badge-ac-txt); }
+
+/* ---- Empty State ---- */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 52vh;
+    gap: 12px;
+    opacity: 0.3;
+    user-select: none;
+    color: var(--text-main);
+    text-align: center;
+}
+.empty-state svg { width: 70px; height: 70px; fill: currentColor; }
+.empty-state h3  { font-size: 16px; font-weight: 600; }
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+
+/* ---- Settings Dropdown (Three Lines Menu) ---- */
+.settings-dropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    background-color: var(--bg-header);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 220px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    z-index: 300;
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+.settings-dropdown.show {
+    opacity: 1; visibility: visible; transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 14px 16px;
+    color: var(--text-main);
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14.5px; font-weight: 500;
+}
+.dropdown-item:last-child { border-bottom: none; }
+
+/* ---- Settings Dropdown Toggle ---- */
+.settings-dropdown .switch { 
+    position: relative; 
+    display: inline-block; 
+    width: 38px; 
+    height: 22px; 
+}
+.settings-dropdown .switch input { opacity: 0; width: 0; height: 0; }
+
+.settings-dropdown .slider { 
+    position: absolute; inset: 0; background: #4b5563; 
+    border-radius: 34px; cursor: pointer; transition: .3s; 
+}
+
+.settings-dropdown .slider::before { 
+    content: ""; position: absolute; height: 16px; width: 16px; 
+    left: 3px; bottom: 3px; background: white; border-radius: 50%; 
+    transition: .3s; box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    transform: none; /* Forces the old transform to be ignored */
+}
+
+/* Active State */
+.settings-dropdown .switch input:checked + .slider { 
+    background: var(--tab-active-bg); 
+}
+/* ---- Bulletproof Settings Dropdown Toggle ---- */
+.settings-dropdown .switch { 
+    position: relative !important; 
+    display: inline-block !important; 
+    width: 38px !important; 
+    height: 22px !important; 
+}
+.settings-dropdown .switch input { opacity: 0 !important; width: 0 !important; height: 0 !important; }
+
+.settings-dropdown .slider { 
+    position: absolute !important; 
+    inset: 0 !important; 
+    background: #4b5563 !important; /* Clean dark grey for unchecked */
+    border-radius: 34px !important; 
+    cursor: pointer !important; 
+    transition: background 0.3s !important; 
+}
+
+.settings-dropdown .slider::before { 
+    content: "" !important; 
+    position: absolute !important; 
+    height: 16px !important; 
+    width: 16px !important; 
+    left: 3px !important; 
+    top: 3px !important; /* Overrides the old 50% trick */
+    bottom: auto !important; 
+    background: white !important; 
+    border-radius: 50% !important; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+    transform: none !important; /* Kills the old Y-axis shifting */
+    transition: left 0.3s !important; 
+}
+
+/* Active State */
+.settings-dropdown .switch input:checked + .slider { 
+    background: var(--tab-active-bg) !important; 
+}
+.settings-dropdown .switch input:checked + .slider::before { 
+    left: 19px !important; /* 19px + 16px circle + 3px padding = 38px perfectly */
+    transform: none !important; 
+}
+
+/* Uses the theme's blue/purple for the active state */
+.switch input:checked + .slider { background: var(--tab-active-bg); }
+.switch input:checked + .slider::before { 
+    left: 3px; /* This cancels out the old 27px rule */
+    transform: translateX(18px); 
+}

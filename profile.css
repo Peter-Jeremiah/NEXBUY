@@ -1,0 +1,313 @@
+/* ============================================================
+   PROFILE / SETTINGS PAGE 
+   ============================================================ */
+
+/* ---- Theme Variables (Exactly matching your app) ---- */
+:root {
+    --bg-page:        #f0f2f5;
+    --bg-header:      #ffffff;
+    --bg-card:        #ffffff;
+    --bg-card-hover:  #f7f9fc;
+    --text-main:      #1a1a2a;
+    --text-sub:       #6b7280;
+    --accent:         #1d4ed8;   /* Blue for icons in light mode */
+    --border-color:   #e2e5ec;
+    --header-border:  #e8a020;   /* Yellow */
+    --shadow:         0 2px 12px rgba(0,0,0,0.07);
+    --transition:     0.28s cubic-bezier(.4,0,.2,1);
+}
+
+[data-theme="dark"] {
+    --bg-page:        #080810;
+    --bg-header:      #0f0f1e;
+    --bg-card:        #141428;
+    --bg-card-hover:  #1a1a34;
+    --text-main:      #f0f0fa;
+    --text-sub:       #8888aa;
+    --accent:         #4f46e5;   /* Purple for icons in dark mode */
+    --border-color:   rgba(255,255,255,0.08);
+    --header-border:  #4f46e5;   /* Purple */
+    --shadow:         0 4px 24px rgba(0,0,0,0.5);
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    min-height: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+/* ---- Header ---- */
+.profile-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 13px 18px;
+    background: transparent; /* Lets the page background show through */
+    border: none;            /* Removes the yellow/purple line */
+    box-shadow: none;        /* Removes the shadow */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: transform 0.15s;
+}
+.back-btn:hover { transform: scale(1.08); }
+.back-btn svg { width: 18px; height: 18px; }
+
+.header-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+}
+
+/* ---- Main Content ---- */
+.profile-main {
+    padding: 20px 18px 40px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* ---- Profile Avatar Section ---- */
+.profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-top: -25px; /* Pulls the avatar up closer to the back button */
+}
+
+.avatar-wrapper {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+/* The big circle with the 'P' */
+.profile-pic-large {
+    width: 80px;
+    height: 80px;
+    background-color: var(--accent); /* Automatically uses Blue in light, Purple in dark */
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: var(--shadow);
+}
+
+/* The small overlapping edit button */
+.edit-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    background-color: var(--bg-card); /* Matches the card backgrounds */
+    border: 2px solid var(--bg-page); /* Creates a cutout effect against the page background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-sub);
+    transition: color var(--transition), transform 0.2s;
+}
+
+.edit-badge:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.edit-badge svg {
+    width: 14px;
+    height: 14px;
+}
+
+.profile-name-large {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.profile-email {
+    font-size: 14px;
+    color: var(--text-sub);
+}
+
+/* "Need Assistance?" Label */
+.group-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-sub);
+    margin: 20px 0 8px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* OPay-style Card Grouping */
+.settings-group {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: background 0.2s;
+    border-bottom: 1px solid var(--border-color);
+}
+.setting-item:last-child {
+    border-bottom: none;
+}
+.setting-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.setting-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    color: var(--accent); /* Adapts to theme */
+}
+.setting-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.setting-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.setting-arrow {
+    font-size: 20px;
+    color: var(--text-sub);
+    line-height: 1;
+}
+
+/* ---- Avatar Upload Menu ---- */
+.avatar-menu {
+    position: absolute;
+    top: 100%;
+    right: -60px; /* Pushes the menu slightly right of the badge */
+    background-color: var(--bg-header);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 190px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    z-index: 300;
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+.avatar-menu.show {
+    opacity: 1; visibility: visible; transform: translateY(0);
+}
+
+.avatar-menu-item {
+    padding: 14px 16px;
+    color: var(--text-main);
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    display: block; /* Important for labels wrapping inputs */
+}
+
+.avatar-menu-item:last-child { border-bottom: none; }
+.avatar-menu-item:hover { background-color: var(--bg-card-hover); }
+
+/* ---- Special Text Colors ---- */
+.remove-text { color: #ef4444 !important; }
+
+.logout-text {
+    color: #ef4444 !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+/* ---- Cropper Modal ---- */
+.crop-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crop-modal-content {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow);
+    color: var(--text-main);
+}
+
+.crop-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.crop-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 14.5px;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+.crop-btn:active { transform: scale(0.95); }
+
+.cancel-btn {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.save-btn {
+    background-color: var(--accent); /* Uses your blue or purple automatically */
+    color: #ffffff;
+}

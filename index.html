@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexBuy</title>
+    <link rel="stylesheet" href="home.css">
+    
+    <script>
+        // Check for saved theme right away to prevent flashing
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="icon-btn" id="menu-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
+
+            <div class="nexbuy-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <span class="nex">NEX</span><span class="buy">BUY</span>
+            </div>
+            <a href="profile.html" class="profile-chip" style="text-decoration: none; color: inherit;">
+                <div class="profile-pic" id="home-profile-initial">P</div>
+                <img src="" alt="Profile" class="profile-pic" id="home-profile-img" style="display: none; object-fit: cover;">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="notification-wrapper">
+              <a href="notification.html" class="icon-btn">
+                 <svg viewBox="0 0 24 24">
+                     <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                 </svg>
+              </a>
+              <span class="badge notification-badge" id="notification-badge">0</span>
+            </div>
+
+            <div class="cart-wrapper">
+                <a href="cart.html" class="icon-btn" style="text-decoration: none;">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                </a>
+                <span class="badge cart-badge" id="cart-badge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-pages-container">
+            <!-- Main Menu Page -->
+            <div class="sidebar-page main-menu-page">
+                <a href="index.html" class="nav-link" id="home-link">Home</a>
+                <div class="search-nav-container">
+                    <a href="#" class="nav-link" id="search-link">Search</a>
+                    <div class="search-bar-dropdown" id="search-dropdown">
+                        <input type="text" placeholder="Search keywords..." class="search-input">
+                    </div>
+                </div>
+                <div class="nav-item-container">
+                    <a href="#" class="nav-link categories-link" id="categories-toggle">
+                        Categories <span class="category-arrow" style="transition: transform 0.3s; display: inline-block;"></span>
+                    </a>
+                    
+                    <div class="categories-dropdown" id="categories-dropdown">
+                        <a href="#" class="category-item" data-category="electronics">Electronics<span class="arrow">></span></a>
+                        <a href="#" class="category-item" data-category="mens-fashion">Men's Fashion<span class="arrow">></span></a>
+                        <a href="#" class="category-item" data-category="womens-fashion">Women's Fashion<span class="arrow">></span></a>
+                        <a href="#" class="category-item" data-category="home-kitchen">Home and Kitchen<span class="arrow">></span></a>
+                        <a href="#" class="category-item" data-category="beauty-care">Beauty and Personal Care<span class="arrow">></span></a>
+                        <a href="#" class="category-item" data-category="sports-outdoors">Sports and Outdoors<span class="arrow">></span></a>
+                        <a href="#" class="category-item" data-category="toys-games">Toys and Games<span class="arrow">></span></a>
+                    </div>
+                </div>
+                <a href="profile.html" class="nav-link">Settings</a>
+                
+                <div class="theme-toggle-container" style="justify-content: right;">
+                    <div class="theme-toggle-wrap">
+                        <svg class="toggle-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        
+                        <label class="switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        
+                        <svg class="toggle-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subcategory Pages -->
+            <!-- Electronics Page -->
+            <div class="sidebar-page electronics-page">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page">< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Mobile Phones & Accessories</a>
+                    <a href="#" class="subcategory-item">Computer & Accessories</a>
+                    <a href="#" class="subcategory-item">Headphones</a>
+                    <a href="#" class="subcategory-item">Television & Video</a>
+                    <a href="#" class="subcategory-item">Camera & Photo</a>
+                    <a href="#" class="subcategory-item">Game Consoles & Accessories</a>
+                </div>
+            </div>
+
+            <!-- Men's Fashion -->
+            <div class="sidebar-page mens-fashion">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page">< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Clothing</a>
+                    <a href="#" class="subcategory-item">Shoes</a>
+                    <a href="#" class="subcategory-item">Watches</a>
+                    <a href="#" class="subcategory-item">Accessories</a>
+                </div>
+            </div>
+
+            <!-- Women's Fashion -->
+            <div class="sidebar-page womens-fashion">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page" >< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Clothing</a>
+                    <a href="#" class="subcategory-item">Shoes</a>
+                    <a href="#" class="subcategory-item">Jewelry</a>
+                    <a href="#" class="subcategory-item">Watches</a>
+                    <a href="#" class="subcategory-item">Handbags</a>
+                    <a href="#" class="subcategory-item">Accessories</a>
+                </div>
+            </div>
+
+            <!-- Home and Kitchen -->
+            <div class="sidebar-page home-kitchen">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page">< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Kids' Home Store</a>
+                    <a href="#" class="subcategory-item">Kitchen & Dining</a>
+                    <a href="#" class="subcategory-item">Bedding</a>
+                    <a href="#" class="subcategory-item">Bath</a>
+                    <a href="#" class="subcategory-item">Furniture</a>
+                    <a href="#" class="subcategory-item">Home Décor</a>
+                    <a href="#" class="subcategory-item">Wall Art</a>
+                    <a href="#" class="subcategory-item">Lighting & Ceiling Fans</a>
+                    <a href="#" class="subcategory-item">Seasonal Décor</a>
+                    <a href="#" class="subcategory-item">Event & Party Supplies</a>
+                    <a href="#" class="subcategory-item">Heating, Cooling & Air Quality</a>
+                    <a href="#" class="subcategory-item">Irons & Steamers</a>
+                    <a href="#" class="subcategory-item">Vacuums & Floor Care</a>
+                </div>
+            </div>
+
+            <!-- Beauty and Personal Care -->
+            <div class="sidebar-page beauty-care">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page">< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Makeup</a>
+                    <a href="#" class="subcategory-item">Skin Care</a>
+                    <a href="#" class="subcategory-item">Hair Care</a>
+                    <a href="#" class="subcategory-item">Fragrance</a>
+                    <a href="#" class="subcategory-item">Foot, Hand & Nail Care</a>
+                    <a href="#" class="subcategory-item">Tools & Accessories</a>
+                    <a href="#" class="subcategory-item">Shave & Hair Removal</a>
+                    <a href="#" class="subcategory-item">Personal Care</a>
+                    <a href="#" class="subcategory-item">Oral Care</a>
+                </div>
+            </div>
+
+            <!-- Sports and Outdoors -->
+            <div class="sidebar-page sports-outdoors">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page">< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Sports and Outdoors</a>
+                    <a href="#" class="subcategory-item">Outdoor Recreation</a>
+                    <a href="#" class="subcategory-item">Sports & Fitness</a>
+                </div>
+            </div>
+
+            <!-- Toys and Games -->
+            <div class="sidebar-page toys-games">
+                <div class="sidebar-header">
+                    <button class="back-btn" data-page="categories-menu-page">< BACK</button>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="subcategory-item">Action Figures & Statues</a>
+                    <a href="#" class="subcategory-item">Arts & Crafts</a>
+                    <a href="#" class="subcategory-item">Baby & Toddler Toys</a>
+                    <a href="#" class="subcategory-item">Building Toys</a>
+                    <a href="#" class="subcategory-item">Dolls & Accessories</a>
+                    <a href="#" class="subcategory-item">Dress Up & Pretend Play</a>
+                    <a href="#" class="subcategory-item">Kids' Electronics</a>
+                    <a href="#" class="subcategory-item">Games</a>
+                    <a href="#" class="subcategory-item">Grown-Up Toys</a>
+                    <a href="#" class="subcategory-item">Hobbies</a>
+                    <a href="#" class="subcategory-item">Kids' Furniture, Décor & Storage</a>
+                    <a href="#" class="subcategory-item">Learning & Education</a>
+                    <a href="#" class="subcategory-item">Novelty & Gag Toys</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="watermark"></div>
+
+    <main>
+        <div class="product-grid" id="product-grid">
+        </div>
+    </main>
+
+    <div class="back-to-top" id="back-to-top">Back to top</div>
+    
+    <footer class="mega-footer">
+        <div class="footer-main">
+            <div class="footer-column">
+                <h3>Partner With Us</h3>
+                <a href="#">Sell on Our Platform</a>
+                <a href="#">Advertise Your Brand</a>
+            </div>
+            <div class="footer-column">
+                <h3>Payment & Support</h3>
+                <a href="#">Shop with Points</a>
+                <a href="#">Help Center</a>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-middle">
+            <div class="footer-logo-placeholder">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                <span>NexBuy</span>
+            </div>
+            <div class="footer-selectors">
+                <button class="footer-btn">🌐 English</button>
+                <button class="footer-btn">🇳🇬 Nigeria</button>
+            </div>
+        </div>
+
+        <div class="footer-services-bg">
+            <div class="footer-services-grid">
+                <a href="#" class="service-item">
+                    <span class="service-title">RefurbishedTech</span>
+                    <span class="service-desc">Quality used products</span>
+                </a>
+            </div>
+
+            <div class="footer-legal">
+                <div class="legal-links">
+                    <a href="#">Conditions of Use</a>
+                    <a href="#">Privacy Notice</a>
+                    <a href="#">Cookies Notice</a>
+                </div>
+                <p class="copyright">© 2026, NexBuy.com| inc.</p>
+                <p class="address">Federal University of Technology, Minna, Niger state. Nigeria</p>
+            </div>
+        </div>
+    </footer>
+    <script src="home.js"></script>
+</body>
+</html>

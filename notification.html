@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="notification.css">
+   <script>
+        // Read the exact same storage key ('theme') that home.js uses
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</head>
+<body>
+
+    <header class="notif-header">
+        <div class="header-left">
+            <a href="index.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Notifications</span>
+        </div>
+
+       <div class="header-right" style="position: relative;">
+            <button class="more-btn" id="more-btn">
+                <span></span><span></span><span></span>
+            </button>
+            
+            <div class="settings-dropdown" id="settings-dropdown">
+                <div class="dropdown-item">
+                    <span>Push notifications</span>
+                    <label class="switch mini-switch">
+                        <input type="checkbox" id="push-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="dropdown-item">
+                    <span>SMS alerts</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter Tabs -->
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="all">All</button>
+        <button class="tab-btn" data-tab="transactions">Transactions</button>
+        <button class="tab-btn" data-tab="services">Services</button>
+        <button class="tab-btn" data-tab="activities">Activities</button>
+    </div>
+
+    <main class="notifications-main" id="notifications-container"></main>
+
+    <script src="notification.js"></script>
+</body>
+</html>

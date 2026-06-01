@@ -207,43 +207,42 @@ if (homeLink) {
 // --- 6. DATA HUB (56 BRANDED PROTOTYPE ITEMS) ---
 const storeProducts = [
     // ELECTRONICS
-    { id: "e1", subcategory: "Headphones", name: "Sony WH-1000XM5", desc: "Noise canceling wireless headphones.", price: 348.00, image: "https://picsum.photos/seed/e1/400/400" },
-    { id: "e2", subcategory: "Mobile Phones & Accessories", name: "Apple Watch Series 9", desc: "Advanced health tracking smartwatch.", price: 399.00, image: "https://picsum.photos/seed/e2/400/400" },
-    { id: "e3", subcategory: "Computer & Accessories", name: "Logitech MX Master 3S", desc: "Ergonomic wireless mouse.", price: 99.99, image: "https://picsum.photos/seed/e3/400/400" },
-    { id: "e4", subcategory: "Computer & Accessories", name: "Keychron K2 Keyboard", desc: "Wireless mechanical keyboard.", price: 79.50, image: "https://picsum.photos/seed/e4/400/400" },
-    { id: "e5", subcategory: "Computer & Accessories", name: "Samsung 49\" Odyssey", desc: "Curved gaming monitor 240Hz.", price: 1199.00, image: "https://picsum.photos/seed/e5/400/400" },
-    { id: "e6", subcategory: "Mobile Phones & Accessories", name: "JBL Charge 5", desc: "Waterproof Bluetooth speaker.", price: 149.95, image: "https://picsum.photos/seed/e6/400/400" },
-    { id: "e7", subcategory: "Mobile Phones & Accessories", name: "Anker PowerCore", desc: "20,000mAh portable charger.", price: 49.99, image: "https://picsum.photos/seed/e7/400/400" },
-    { id: "e8", subcategory: "Game Consoles & Accessories", name: "PS5 DualSense", desc: "Wireless controller with haptic feedback.", price: 69.00, image: "https://picsum.photos/seed/e8/400/400" },
+    { id: "e1", subcategory: "Headphones & Speakers", name: "Sony WH-1000XM5", desc: "Noise canceling wireless headphones.", price: 348.00, image: "images/1000xm5.jpg" },
+    { id: "e2", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S21", desc: "UK used, 128GB", price: 169.99, image: "images/s21.jpg" },
+    { id: "e3", subcategory: "Mobile Phones & Accessories", name: "Apple Watch Series 3", desc: "Used apple watch", price: 69.99, image: "images/apple watch.jpg" },
+    { id: "e4", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 11 pro max", desc: "UK used, 128GB", price: 169.99, image: "images/11 pro max.jpg" },
+    { id: "e5", subcategory: "Mobile Phones & Accessories", name: "Apple iPad 11", desc: "UK used, 256GB", price: 169.99, image: "images/ipad 11.jpg" },
+    { id: "e6", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 12", desc: "IDM, IBM, Battery health: 85", price: 399.99, image: "images/iphone 12.jpg" },
+    { id: "e7", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 14 pro", desc: "Open box, 128GB BH 100, LLA 2Sim", price: 99.99, image: "images/14 pro.jpg" },
+    { id: "e8", subcategory: "Computer & Accessories", name: "Dell Latitiude 7490", desc: "16GB/512GB, Intel core i7-8650U", price: 296.99, image: "images/7490.jpg" },
+    { id: "e9", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 12 pro", desc: "Open box, 128GB, BH 69", price: 237.99, image: "images/12 pro.jpg" },
+    { id: "e10", subcategory: "Headphones & Speakers", name: "JBL BoomBox 3", desc: "Brand New Sealed, Green", price: 455.99, image: "images/boombox 3.jpg" },
+    { id: "e11", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 11 pro", desc: "UK used, 64GB, IDM, BH 87.", price: 167, image: "images/11 pro.jpg" },
+    { id: "e12", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 11", desc: "UK standard, 128GB, BH 86", price: 174.99, image: "images/iphone 11.jpg" },
+    { id: "e13", subcategory: "Computer & Accessories", name: "Hp EliteBook 850 G7", desc: "UK used, 8GB/256GB, Intel core i5-10365U", price: 147.99, image: "images/850 g7.jpg" },
+    { id: "e14", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone X", desc: "UK standard, 64GB, BH 72", price: 99.99, image: "images/iphone x.jpg" },
+    { id: "e15", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S25", desc: "UK used, 128GB,", price: 629.99, image: "images/s25.jpg" },
+    { id: "e16", subcategory: "Headphones & Speakers", name: "Samsung Galaxy Bud 3 pro", desc: "Samsung earpods,Brand new, silver", price: 89.99, image: "images/buds 3 pro.jpg" },
+    { id: "e17", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S22", desc: "UK used, 256GB", price: 222.50, image: "images/s22.jpg" },
+    { id: "e18", subcategory: "Computer & Accessories", name: "HP EliteBook 1040 G8", desc: "16GB/512GB, Intel core i7-1165G7", price: 481.99, image: "images/1040 g8.jpg" },
+    { id: "e19", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S22 Ultra", desc: "UK used, 128GB", price: 334.99, image: "images/s22 ultra.jpg" },
+    { id: "e20", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S20", desc: "UK standard, 128GB", price: 149.99, image: "images/s20.jpg" },
+    { id: "e21", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S10", desc: "UK standard, 128GB", price: 266.99, image: "images/s10.jpg" },
+    { id: "e22", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy S9", desc: "UK used, 64GB", price: 66.99, image: "images/s9.jpg" },
+    { id: "e23", subcategory: "Mobile Phones & Accessories", name: "Samsung Galaxy A07", desc: "Brand new, 6GB/128GB", price: 166.99, image: "images/a07.jpg" },
+    { id: "e24", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 16", desc: "Open box, 128GB", price: 566.99, image: "images/iphone 16.jpg" },
+    { id: "e25", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone 17 pro", desc: "UK used,256GB", price: 866.99, image: "images/17 pro.jpg" },
+    { id: "e26", subcategory: "Headphones & Speakers", name: "JBL Charge 5", desc: "Waterproof Bluetooth speaker.", price: 149.95, image: "images/charge 5.jpg" },
+    { id: "e27", subcategory: "Mobile Phones & Accessories", name: "Apple iPhone XR", desc: "128GB, BH 80, Screen strike", price: 244.99, image: "images/iphone xr.jpg" },
+    { id: "e28", subcategory: "Game Consoles & Accessories", name: "PS5 slim with Two gamepads", desc: "Wireless controller, White, comes with box", price: 469.00, image: "images/ps5.jpg" },
 
     // MEN's FASHION
     { id: "m1", subcategory: "Clothing", name: "Classic Oxford Shirt", desc: "100% cotton button-down shirt.", price: 45.00, image: "https://picsum.photos/seed/m1/400/400" },
-    { id: "m2", subcategory: "Clothing", name: "Slim Fit Chinos", desc: "Stretch fabric comfortable trousers.", price: 55.00, image: "https://picsum.photos/seed/m2/400/400" },
-    { id: "m3", subcategory: "Shoes", name: "Leather Chelsea Boots", desc: "Premium suede slip-on boots.", price: 120.00, image: "https://picsum.photos/seed/m3/400/400" },
-    { id: "m4", subcategory: "Clothing", name: "Denim Jacket", desc: "Vintage wash trucker jacket.", price: 85.00, image: "https://picsum.photos/seed/m4/400/400" },
-    { id: "m5", subcategory: "Watches", name: "Minimalist Watch", desc: "Matte black dial with leather strap.", price: 95.00, image: "https://picsum.photos/seed/m5/400/400" },
-    { id: "m6", subcategory: "Accessories", name: "Polarized Sunglasses", desc: "UV400 protection aviators.", price: 25.00, image: "https://picsum.photos/seed/m6/400/400" },
-    { id: "m7", subcategory: "Clothing", name: "Athletic Running Shorts", desc: "Lightweight breathable activewear.", price: 30.00, image: "https://picsum.photos/seed/m7/400/400" },
-    { id: "m8", subcategory: "Accessories", name: "Wool Blend Beanie", desc: "Warm winter knit cap.", price: 18.00, image: "https://picsum.photos/seed/m8/400/400" },
-
     // WOMEN's FASHION
     { id: "w1", subcategory: "Clothing", name: "Floral Summer Dress", desc: "Lightweight midi dress.", price: 48.00, image: "https://picsum.photos/seed/w1/400/400" },
-    { id: "w2", subcategory: "Handbags", name: "Leather Tote Bag", desc: "Spacious everyday work bag.", price: 110.00, image: "https://picsum.photos/seed/w2/400/400" },
-    { id: "w3", subcategory: "Clothing", name: "High-Waist Jeans", desc: "Vintage straight leg denim.", price: 65.00, image: "https://picsum.photos/seed/w3/400/400" },
-    { id: "w4", subcategory: "Clothing", name: "Silk Blouse", desc: "Elegant evening wear top.", price: 55.00, image: "https://picsum.photos/seed/w4/400/400" },
-    { id: "w5", subcategory: "Shoes", name: "Ankle Strap Heels", desc: "Comfortable block heel sandals.", price: 75.00, image: "https://picsum.photos/seed/w5/400/400" },
-    { id: "w6", subcategory: "Jewelry", name: "Gold Plated Necklace", desc: "Minimalist pendant chain.", price: 35.00, image: "https://picsum.photos/seed/w6/400/400" },
-    { id: "w7", subcategory: "Clothing", name: "Yoga Leggings", desc: "Squat-proof activewear.", price: 40.00, image: "https://picsum.photos/seed/w7/400/400" },
-    { id: "w8", subcategory: "Clothing", name: "Oversized Cardigan", desc: "Cozy knit winter sweater.", price: 50.00, image: "https://picsum.photos/seed/w8/400/400" },
-
     // HOME & KITCHEN
     { id: "h1", subcategory: "Kitchen & Dining", name: "Ninja Professional Blender", desc: "1000-watt power crushing technology.", price: 89.99, image: "https://picsum.photos/seed/h1/400/400" },
-    { id: "h2", subcategory: "Kitchen & Dining", name: "Cast Iron Skillet", desc: "Pre-seasoned 10-inch pan.", price: 29.50, image: "https://picsum.photos/seed/h2/400/400" },
-    { id: "h3", subcategory: "Kitchen & Dining", name: "Nespresso Machine", desc: "Espresso maker with milk frother.", price: 199.00, image: "https://picsum.photos/seed/h3/400/400" },
-    { id: "h4", subcategory: "Kitchen & Dining", name: "Ceramic Dinnerware Set", desc: "16-piece plates and bowls.", price: 65.00, image: "https://picsum.photos/seed/h4/400/400" },
-    { id: "h5", subcategory: "Bedding", name: "Memory Foam Pillow", desc: "Cooling gel orthopedic pillow.", price: 45.00, image: "https://picsum.photos/seed/h5/400/400" },
-    { id: "h6", subcategory: "Vacuums & Floor Care", name: "Robot Vacuum Cleaner", desc: "Smart navigation auto-charging.", price: 249.99, image: "https://picsum.photos/seed/h6/400/400" },
-   // ... your previous products ...
+      // ... your previous products ...
     { id: "h6", subcategory: "Vacuums & Floor Care", name: "Robot Vacuum Cleaner", desc: "Smart navigation auto-charging.", price: 249.99, image: "https://picsum.photos/seed/h6/400/400" },
     // 1. FIX: Close the string and the array properly
     { id: "h7", subcategory: "Home Décor", name: "Essential Oil Diffuser", desc: "Aromatherapy diffuser with LED lights.", price: 25.00, image: "https://picsum.photos/seed/h7/400/400" }

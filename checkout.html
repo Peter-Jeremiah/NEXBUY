@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout</title>
+    <link rel="stylesheet" href="notification.css">
+    
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .checkout-container { max-width: 700px; margin: 30px auto; padding: 0 20px; }
+        .checkout-section { background: var(--bg-card); padding: 24px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow); }
+        .checkout-section h2 { font-size: 18px; margin-bottom: 20px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .checkout-section h2 svg { width: 20px; height: 20px; fill: var(--accent); }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--text-sub); font-weight: 600; }
+        .form-input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-main); color: var(--text-main); font-size: 15px; outline: none; }
+        .form-input:focus { border-color: var(--accent-link); }
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+        
+        .pay-btn { width: 100%; background: var(--accent-link); color: #fff; padding: 16px; font-size: 16px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; transition: filter 0.2s; }
+        .pay-btn:hover { filter: brightness(1.1); }
+    </style>
+</head>
+<body>
+
+    <header class="notif-header">
+        <div class="header-left">
+            <a href="cart.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Secure Checkout</span>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-section">
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Shipping Address
+            </h2>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-input" placeholder="Peter Parker">
+            </div>
+            <div class="form-group">
+                <label>Street Address</label>
+                <input type="text" class="form-input" placeholder="123 Web St.">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-input" placeholder="New York">
+                </div>
+                <div class="form-group">
+                    <label>Zip Code</label>
+                    <input type="text" class="form-input" placeholder="10001">
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout-section">
+            <h2>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                Payment Method
+            </h2>
+            <div class="form-group">
+                <label>Card Number</label>
+                <input type="text" class="form-input" placeholder="0000 0000 0000 0000">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" class="form-input" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" class="form-input" placeholder="123">
+                </div>
+            </div>
+            <button class="pay-btn" onclick="alert('Payment Successful!'); window.location.href='index.html'">Pay Now</button>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -97,7 +97,10 @@ function iconSVG(category) {
     return icons[category] || icons['activities'];
 }
 
-// ---- 6. Render ----
+// ---- 6. Constants ----
+const ANIMATION_DELAY = 0.06;
+
+// ---- 7. Render ----
 function renderNotifications() {
     const filtered = activeTab === 'all'
         ? notificationsData
@@ -115,7 +118,7 @@ function renderNotifications() {
     }
 
     container.innerHTML = filtered.map((item, i) => `
-        <div class="notify-card" style="animation-delay:${i * 0.06}s">
+        <div class="notify-card" style="animation-delay:${i * ANIMATION_DELAY}s">
             <div class="notify-card-header">
                 <div class="notify-icon">
                     <svg viewBox="0 0 24 24">${iconSVG(item.category)}</svg>
@@ -138,7 +141,7 @@ renderNotifications();
 // Save the exact length of the array to localStorage
 localStorage.setItem('notifCount', notificationsData.length);
 
-// ---- 8. Settings Dropdown Logic & Toggles ----
+// ---- 8. Update Section Counter ----
 const moreBtn = document.getElementById('more-btn');
 const settingsDropdown = document.getElementById('settings-dropdown');
 const pushToggle = document.getElementById('push-toggle');

@@ -82,11 +82,13 @@ function renderCart() {
         `;
     });
 
-    // Update the DOM
-    cartContainer.innerHTML = html;
-    cartItemCount.innerText = `Shopping Cart (${totalItems} items)`;
-    summaryItems.innerText = totalItems;
-    summaryTotal.innerText = `$${totalAmount.toFixed(2)}`;
+    // Update the DOM (create element to prevent XSS)
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    cartContainer.replaceChildren(...tempDiv.childNodes);
+    cartItemCount.textContent = `Shopping Cart (${totalItems} items)`;
+    summaryItems.textContent = totalItems;
+    summaryTotal.textContent = `$${totalAmount.toFixed(2)}`;
 }
 
 // Control Functions

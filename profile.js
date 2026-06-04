@@ -49,7 +49,12 @@ function loadAvatar() {
 // Run this immediately when the page loads!
 loadAvatar();
 
-// ---- 3. Cropper.js Logic ----
+// ---- 3. Cropper Cleanup on Page Unload ----
+window.addEventListener('beforeunload', () => {
+    if (cropper) { cropper.destroy(); cropper = null; }
+});
+
+// ---- 4. Cropper.js Logic ----
 let cropper = null; // Holds the cropper instance
 const cropModal = document.getElementById('crop-modal');
 const imageToCrop = document.getElementById('image-to-crop');
@@ -97,7 +102,7 @@ function handleFileSelection(event) {
 cameraInput.addEventListener('change', handleFileSelection);
 galleryInput.addEventListener('change', handleFileSelection);
 
-// ---- 4. Modal Buttons ----
+// ---- 5. Modal Buttons ----
 
 // Cancel Button Logic
 cancelCropBtn.addEventListener('click', () => {

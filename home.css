@@ -589,10 +589,12 @@ main { position: relative; z-index: 1; }
     display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-/* Surgical Layout Spacing Reductions */
+/* Surgical Layout Spacing Reductions in home.css */
 .product-card .price {
-    color: var(--accent-primary); font-weight: bold; font-size: 16px; 
-    margin-bottom: 4px; /* Reduced space directly under price */
+    color: var(--accent-primary); 
+    font-weight: bold; 
+    font-size: 16px; 
+    margin-bottom: 4px; 
 }
 
 /* Buttons Spacing Adjustments */

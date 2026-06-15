@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .address-card { padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: flex-start; }
+        .address-card:last-child { border-bottom: none; }
+        .address-details { flex: 1; }
+        .address-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+        .default-badge { font-size: 10px; background: var(--accent); color: white; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
+        .address-text { font-size: 14px; color: var(--text-sub); line-height: 1.5; margin-bottom: 4px; }
+        .address-phone { font-size: 13px; color: var(--text-sub); }
+        .address-actions { display: flex; gap: 10px; }
+        .action-btn { background: none; border: none; color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer; }
+        .add-btn { width: 100%; padding: 14px; background: var(--bg-card); color: var(--accent); border: 2px dashed var(--accent); border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; transition: background 0.2s; }
+        .add-btn:hover { background: var(--bg-page); }
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Address Book</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="settings-group" id="address-container">
+            <!-- Addresses render here -->
+        </div>
+        <button class="add-btn" id="add-address-btn">+ Add New Address</button>
+    </main>
+    
+    <script src="toast.js"></script>
+    <script>
+        let addresses = JSON.parse(localStorage.getItem('nexbuy_addresses')) || [
+            { id: 1, name: 'Home', address: '123 NexBuy Avenue, Tech District\\nMinna, Niger State', phone: '+234 800 000 0000', isDefault: true },
+            { id: 2, name: 'Office', address: 'Federal University of Technology\\nMinna, Niger State', phone: '', isDefault: false }
+        ];
+
+        const container = document.getElementById('address-container');
+
+        function renderAddresses() {
+            container.innerHTML = '';
+            addresses.forEach(addr => {
+                container.innerHTML += `
+                    <div class="address-card">
+                        <div class="address-details">
+                            <div class="address-name">${addr.name} ${addr.isDefault ? '<span class="default-badge">Default</span>' : ''}</div>
+                            <div class="address-text">${addr.address.replace(/\\n/g, '<br>')}</div>
+                            ${addr.phone ? `<div class="address-phone">${addr.phone}</div>` : ''}
+                        </div>
+                        <div class="address-actions">
+                            <button class="action-btn" onclick="deleteAddress(${addr.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+            localStorage.setItem('nexbuy_addresses', JSON.stringify(addresses));
+        }
+
+        window.deleteAddress = function(id) {
+            if(confirm('Delete this address?')) {
+                addresses = addresses.filter(a => a.id !== id);
+                renderAddresses();
+                showToast('Address removed', 'success');
+            }
+        }
+
+        document.getElementById('add-address-btn').addEventListener('click', () => {
+            const name = prompt('Address Name (e.g. Home, Office):');
+            if(!name) return;
+            const address = prompt('Street Address:');
+            if(!address) return;
+            const phone = prompt('Phone Number (Optional):');
+            
+            addresses.push({ id: Date.now(), name, address, phone, isDefault: addresses.length === 0 });
+            renderAddresses();
+            showToast('Address added!', 'success');
+        });
+
+        renderAddresses();
+    </script>
+</body>
+</html>

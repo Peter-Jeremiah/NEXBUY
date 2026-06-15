@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Centre</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .security-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); transition: background 0.2s; }
+        .security-item:last-child { border-bottom: none; }
+        .security-item:hover { background: var(--bg-card-hover); }
+        .sec-info { flex: 1; }
+        .sec-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+        .sec-desc { font-size: 13px; color: var(--text-sub); }
+        .sec-status { font-size: 13px; font-weight: 600; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Security Centre</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="settings-group">
+            <a href="#" class="security-item">
+                <div class="sec-info">
+                    <div class="sec-title">Change Password</div>
+                    <div class="sec-desc">Update your account password regularly.</div>
+                </div>
+                <span class="setting-arrow">›</span>
+            </a>
+            <a href="#" class="security-item">
+                <div class="sec-info">
+                    <div class="sec-title">Two-Factor Authentication (2FA)</div>
+                    <div class="sec-desc">Add an extra layer of security.</div>
+                </div>
+                <span class="sec-status" style="color: #15803d;">Enabled</span>
+            </a>
+            <a href="#" class="security-item">
+                <div class="sec-info">
+                    <div class="sec-title">Active Devices</div>
+                    <div class="sec-desc">Manage devices logged into your account.</div>
+                </div>
+                <span class="setting-arrow">›</span>
+            </a>
+        </div>
+        
+        <button style="width: 100%; padding: 14px; background: transparent; color: #ef4444; border: 1px solid #ef4444; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer;">Delete Account</button>
+    </main>
+</body>
+</html>

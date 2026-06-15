@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish List</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .wishlist-item { padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-main); transition: background 0.2s; }
+        .wishlist-item:hover { background: var(--bg-card-hover); }
+        .wishlist-item:last-child { border-bottom: none; }
+        .item-img { width: 64px; height: 64px; border-radius: 8px; object-fit: contain; background: var(--bg-page); border: 1px solid var(--border-color); }
+        .item-details { flex: 1; }
+        .item-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+        .item-price { font-weight: 700; font-size: 16px; color: #e8a020; }
+        .add-cart-btn { padding: 8px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; transition: opacity 0.2s; }
+        .add-cart-btn:hover { opacity: 0.9; }
+        .remove-btn { background: none; border: none; color: var(--text-sub); font-size: 22px; cursor: pointer; padding: 0 5px; margin-left: 5px;}
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Wish List</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="settings-group">
+            <div class="wishlist-item">
+                <img src="images/14 pro.jpg" class="item-img" onerror="this.src='https://picsum.photos/100'">
+                <div class="item-details">
+                    <div class="item-title">Apple iPhone 14 Pro</div>
+                    <div class="item-price">₦520,000</div>
+                </div>
+                <button class="add-cart-btn" onclick="showToast('Added to Cart!')">Add to Cart</button>
+                <button class="remove-btn">×</button>
+            </div>
+            <div class="wishlist-item">
+                <img src="images/boombox 3.jpg" class="item-img" onerror="this.src='https://picsum.photos/101'">
+                <div class="item-details">
+                    <div class="item-title">JBL BoomBox 3</div>
+                    <div class="item-price">₦570,000</div>
+                </div>
+                <button class="add-cart-btn" onclick="showToast('Added to Cart!')">Add to Cart</button>
+                <button class="remove-btn">×</button>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="home.html" style="color: var(--accent); font-weight: bold; text-decoration: none; font-size: 14px;">Continue Shopping</a>
+        </div>
+    </main>
+    <script src="toast.js"></script>
+</body>
+</html>

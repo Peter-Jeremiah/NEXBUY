@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .order-card { padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--text-main); }
+        .order-card:hover { background: var(--bg-card-hover); }
+        .order-card:last-child { border-bottom: none; }
+        .order-header { display: flex; justify-content: space-between; align-items: center; }
+        .order-id { font-weight: 700; font-size: 15px; }
+        .order-status { font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase; }
+        .status-delivered { background: rgba(21, 128, 61, 0.15); color: #15803d; }
+        .status-shipped { background: rgba(29, 78, 216, 0.15); color: #1d4ed8; }
+        .status-processing { background: rgba(232, 160, 32, 0.15); color: #e8a020; }
+        
+        [data-theme="dark"] .status-delivered { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        [data-theme="dark"] .status-shipped { background: rgba(96, 165, 250, 0.2); color: #60a5fa; }
+        [data-theme="dark"] .status-processing { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+
+        .order-body { display: flex; gap: 12px; align-items: center; }
+        .order-img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; background: var(--bg-page); border: 1px solid var(--border-color); }
+        .order-info { flex: 1; }
+        .order-title { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+        .order-date { font-size: 13px; color: var(--text-sub); }
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">My Orders</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="settings-group">
+            <a href="#" class="order-card">
+                <div class="order-header">
+                    <span class="order-id">Order #NB-84920</span>
+                    <span class="order-status status-shipped">Shipped</span>
+                </div>
+                <div class="order-body">
+                    <img src="images/1000xm5.jpg" class="order-img" onerror="this.src='https://picsum.photos/100'">
+                    <div class="order-info">
+                        <div class="order-title">Sony WH-1000XM5</div>
+                        <div class="order-date">Placed on Jun 12, 2026</div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="order-card">
+                <div class="order-header">
+                    <span class="order-id">Order #NB-71192</span>
+                    <span class="order-status status-processing">Processing</span>
+                </div>
+                <div class="order-body">
+                    <img src="https://picsum.photos/seed/h1/100/100" class="order-img">
+                    <div class="order-info">
+                        <div class="order-title">Ninja Professional Blender</div>
+                        <div class="order-date">Placed on Jun 15, 2026</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

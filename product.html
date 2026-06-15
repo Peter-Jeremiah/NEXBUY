@@ -89,14 +89,13 @@
         <div class="similar-items-carousel" id="similar-items-container"></div>
     </section>
 
+    <script src="data.js"></script>
+    <script src="toast.js"></script>
     <script>
         // 1. Get the product ID from the URL (e.g., ?id=e1)
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
 
-        // 2. Fetch the product database from memory
-        const storeProducts = JSON.parse(localStorage.getItem('masterProducts')) || [];
-        
         // 3. Find the specific product that matches the ID
         const product = storeProducts.find(p => p.id === productId);
 
@@ -135,11 +134,10 @@
                 cart[product.id] = (cart[product.id] || 0) + 1;
                 localStorage.setItem('cart', JSON.stringify(cart));
                 
-                // Change button state to show success
+                showToast('Added to Cart!');
                 const btn = document.getElementById('detail-add-btn');
                 btn.textContent = "Added to Cart!";
                 btn.style.backgroundColor = "#10b981"; // Success green
-                setTimeout(() => window.location.href = 'index.html', 800); // Go back home
             };
 
             // 6. Populate Similar Items Carousel

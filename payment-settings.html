@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Settings</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .payment-card { padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; }
+        .payment-card:last-child { border-bottom: none; }
+        .card-icon { width: 44px; height: 28px; background: #1a1a2a; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: bold; }
+        [data-theme="dark"] .card-icon { background: #333; }
+        .card-details { flex: 1; }
+        .card-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+        .card-exp { font-size: 13px; color: var(--text-sub); }
+        .action-btn { background: none; border: none; color: #ef4444; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .add-btn { width: 100%; padding: 14px; background: var(--bg-card); color: var(--accent); border: 2px dashed var(--accent); border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; transition: background 0.2s; }
+        .add-btn:hover { background: var(--bg-page); }
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Payment Settings</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="group-label">Saved Cards</div>
+        <div class="settings-group" id="payment-container">
+            <!-- Dynamic Cards Here -->
+        </div>
+        <button class="add-btn" id="add-card-btn">+ Add New Card</button>
+    </main>
+    
+    <script src="toast.js"></script>
+    <script>
+        let cards = JSON.parse(localStorage.getItem('nexbuy_cards')) || [
+            { id: 1, type: 'VISA', last4: '4242', exp: '12/28', color: '#1a1a2a' },
+            { id: 2, type: 'MC', last4: '8810', exp: '09/27', color: '#e8a020' }
+        ];
+
+        const container = document.getElementById('payment-container');
+
+        function renderCards() {
+            container.innerHTML = '';
+            cards.forEach(card => {
+                container.innerHTML += `
+                    <div class="payment-card">
+                        <div class="card-icon" style="background: ${card.color};">${card.type}</div>
+                        <div class="card-details">
+                            <div class="card-name">${card.type === 'VISA' ? 'Visa' : 'Mastercard'} ending in ${card.last4}</div>
+                            <div class="card-exp">Expires ${card.exp}</div>
+                        </div>
+                        <button class="action-btn" onclick="removeCard(${card.id})">Remove</button>
+                    </div>
+                `;
+            });
+            localStorage.setItem('nexbuy_cards', JSON.stringify(cards));
+        }
+
+        window.removeCard = function(id) {
+            if(confirm('Remove this saved card?')) {
+                cards = cards.filter(c => c.id !== id);
+                renderCards();
+                showToast('Card removed successfully');
+            }
+        }
+
+        document.getElementById('add-card-btn').addEventListener('click', () => {
+            const last4 = prompt('Enter last 4 digits of card:');
+            if(!last4 || last4.length !== 4) return;
+            const exp = prompt('Enter Expiry Date (MM/YY):');
+            if(!exp) return;
+            const type = prompt('Card Type (VISA or MC):').toUpperCase();
+            
+            cards.push({ id: Date.now(), type: type === 'MC' ? 'MC' : 'VISA', last4, exp, color: type === 'MC' ? '#e8a020' : '#1a1a2a' });
+            renderCards();
+            showToast('New card added successfully!');
+        });
+
+        renderCards();
+    </script>
+</body>
+</html>

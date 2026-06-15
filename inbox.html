@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .msg-item { display: flex; flex-direction: column; padding: 16px 20px; border-bottom: 1px solid var(--border-color); text-decoration: none; color: var(--text-main); transition: background 0.2s; }
+        .msg-item:hover { background: var(--bg-card-hover); }
+        .msg-item:last-child { border-bottom: none; }
+        .msg-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .msg-sender { font-weight: 700; font-size: 15px; }
+        .msg-date { font-size: 12px; color: var(--text-sub); }
+        .msg-preview { font-size: 14px; color: var(--text-sub); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .unread .msg-sender { color: var(--accent); }
+        .unread .msg-preview { font-weight: 600; color: var(--text-main); }
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Inbox</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="settings-group">
+            <a href="#" class="msg-item unread">
+                <div class="msg-header">
+                    <span class="msg-sender">NexBuy Support</span>
+                    <span class="msg-date">10:42 AM</span>
+                </div>
+                <div class="msg-preview">Welcome to NexBuy! Here are some tips to get started...</div>
+            </a>
+            <a href="#" class="msg-item">
+                <div class="msg-header">
+                    <span class="msg-sender">Seller: TechHub Store</span>
+                    <span class="msg-date">Yesterday</span>
+                </div>
+                <div class="msg-preview">Your inquiry regarding the Dell Latitude 7490 has been answered.</div>
+            </a>
+            <a href="#" class="msg-item">
+                <div class="msg-header">
+                    <span class="msg-sender">NexBuy Promos</span>
+                    <span class="msg-date">May 12</span>
+                </div>
+                <div class="msg-preview">Don't miss out on our mid-year tech sale. Up to 50% off!</div>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

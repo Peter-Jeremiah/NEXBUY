@@ -10,8 +10,7 @@ const cartItemCount = document.getElementById('cart-item-count');
 // Load cart and product database from localStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-// Magic! This reads the 56 items saved by home.js 
-const storeProducts = JSON.parse(localStorage.getItem('masterProducts')) || [];
+// storeProducts is now globally available via data.js
 
 function getProductDetails(id) {
     // Search the master array for the matching product
@@ -46,7 +45,10 @@ function renderCart() {
         
         cartItemCount.innerText = 'Shopping Cart';
         summaryItems.innerText = '0';
-        summaryTotal.innerText = '$0.00';
+        
+        // FIX: Change $0.00 to ₦0.00 here
+        summaryTotal.innerText = '₦0.00'; 
+        
         return;
     }
 
@@ -67,7 +69,7 @@ function renderCart() {
                 <img src="${product.image}" class="cart-img" style="object-fit: cover; background-color: #fff;">
                 <div class="cart-details">
                     <div class="cart-title">${product.name}</div>
-                    <div class="cart-price">$${product.price.toFixed(2)}</div>
+                    <div class="cart-price">₦${Math.round(product.price).toLocaleString('en-NG')}</div>
                     
                     <div class="cart-actions">
                         <div class="qty-controls">
@@ -88,7 +90,9 @@ function renderCart() {
     cartContainer.replaceChildren(...tempDiv.childNodes);
     cartItemCount.textContent = `Shopping Cart (${totalItems} items)`;
     summaryItems.textContent = totalItems;
-    summaryTotal.textContent = `$${totalAmount.toFixed(2)}`;
+    
+    // UPDATE THIS LINE:
+    summaryTotal.textContent = `₦${Math.round(totalAmount).toLocaleString('en-NG')}`;
 }
 
 // Control Functions

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback & Suggestions</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <style>
+        .feedback-form { padding: 20px; }
+        .form-label { display: block; font-weight: 600; font-size: 14.5px; margin-bottom: 10px; color: var(--text-main); }
+        .stars { display: flex; gap: 8px; margin-bottom: 24px; }
+        .star { font-size: 32px; color: var(--border-color); cursor: pointer; transition: color 0.2s; user-select: none; }
+        .star.active, .star:hover { color: #e8a020; }
+        .feedback-text { width: 100%; height: 140px; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-page); color: var(--text-main); font-size: 14px; resize: none; outline: none; margin-bottom: 15px; font-family: inherit; }
+        .feedback-text:focus { border-color: var(--accent); }
+        .submit-btn { width: 100%; padding: 14px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; transition: opacity 0.2s; }
+        .submit-btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <header class="profile-header">
+        <div class="header-left">
+            <a href="profile.html" class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </a>
+            <span class="header-title">Feedback</span>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="settings-group feedback-form">
+            <p style="font-size: 14px; color: var(--text-sub); margin-bottom: 25px; line-height: 1.5;">We would love to hear your thoughts, suggestions, concerns, or problems with anything so we can improve!</p>
+            
+            <label class="form-label">Rate your experience</label>
+            <div class="stars">
+                <span class="star active">★</span>
+                <span class="star active">★</span>
+                <span class="star active">★</span>
+                <span class="star active">★</span>
+                <span class="star">★</span>
+            </div>
+
+            <label class="form-label">Describe your experience</label>
+            <textarea class="feedback-text" placeholder="Tell us what you think..."></textarea>
+
+            <button class="submit-btn" onclick="showToast('Thank you for your feedback!'); setTimeout(() => window.location.href='profile.html', 1500);">Submit Feedback</button>
+        </div>
+    </main>
+    <script src="toast.js"></script>
+    <script>
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => { stars.forEach((s, i) => { s.classList.toggle('active', i <= index); }); });
+        });
+    </script>
+</body>
+</html>

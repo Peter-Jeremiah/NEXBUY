@@ -371,3 +371,18 @@ function renderProducts(filterCategory) {
 renderProducts('all');
 updateCartUI();
 updateNotificationUI();
+
+// Load User Profile Data
+function loadUserProfile() {
+    const userData = JSON.parse(localStorage.getItem('nexbuy_user'));
+    const profileInitialElement = document.getElementById('home-profile-initial');
+    
+    if (userData && userData.name && profileInitialElement) {
+        // Extract the first letter of the user's name
+        const initial = userData.name.charAt(0).toUpperCase();
+        profileInitialElement.innerText = initial;
+    }
+}
+
+// Call it on page load
+loadUserProfile();

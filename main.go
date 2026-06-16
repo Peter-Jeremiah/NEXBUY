@@ -24,8 +24,13 @@ func main() {
 	}
 	defer conn.Close(context.Background())
 
-	// 3. Define a simple API endpoint
+	// Define a simple API endpoint with CORS allowed
 	http.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
+		// CRITICAL: This line tells browsers that ANY frontend is allowed to read this data
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 		fmt.Fprintf(w, "NexBuy Backend is online and connected to Postgres!")
 	})
 

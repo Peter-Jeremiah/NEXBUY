@@ -361,21 +361,23 @@ function loadUserProfile() {
 // Call it on page load
 loadUserProfile();
 
-// 1. The live address Render gave you
 const BACKEND_URL = "https://nexbuy-2puw.onrender.com"; 
 
-// 2. Function to check if your backend and database are responding
-async function checkBackendHealth() {
+async function fetchProductsFromDatabase() {
     try {
-        const response = await fetch(`${BACKEND_URL}/api/health`);
-        const text = await response.text();
+        // 1. Fetch the data from your new Go endpoint
+        const response = await fetch(`${BACKEND_URL}/api/products`);
+        const products = await response.json();
         
-        console.log("Backend Status:", text);
-        // This will print: "NexBuy Backend is online and connected to Postgres!" in your browser console
+        console.log("Successfully fetched products:", products);
+        
+        // 2. Pass the database products into your existing render function!
+        renderProducts(products);
+        
     } catch (error) {
-        console.error("Could not connect to backend:", error);
+        console.error("Error loading products from database:", error);
     }
 }
 
-// 3. Run the check immediately when the page loads
-checkBackendHealth();
+// Replace your old renderProducts('all') at the bottom of the file with this:
+fetchProductsFromDatabase();
